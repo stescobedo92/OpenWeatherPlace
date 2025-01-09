@@ -8,21 +8,21 @@
 
 /**
  * @class EnvLoader
- * @brief Clase para cargar variables de entorno desde un archivo .env.
+ * @brief Class to load environment variables from a .env file.
  */
 class EnvLoader {
 public:
     /**
      * @brief Constructor.
-     * @param file_path Ruta al archivo .env.
+     * @param file_path Path to the .env file.
      */
-    EnvLoader(const std::string& file_path);
+    explicit EnvLoader(const std::string& file_path);
 
     /**
-     * @brief Carga las variables de entorno desde el archivo .env.
-     * @return Mapa de variables de entorno.
+    * @brief Loads environment variables from the .env file.
+    * @return Map of environment variables.
      */
-    std::unordered_map<std::string, std::string> load() const;
+    [[nodiscard]] std::unordered_map<std::string, std::string> load() const;
 
 private:
     std::string file_path_;
