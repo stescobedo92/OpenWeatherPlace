@@ -4,4 +4,10 @@ project(OpenWeatherPlace)
 set(CMAKE_CXX_STANDARD 23)
 include_directories(include)
 
-add_executable(OpenWeatherPlace main.cpp src/EnvLoader.cpp src/WeatherClient.cpp)
+add_executable(weather main.cpp src/EnvLoader.cpp src/WeatherClient.cpp)
+
+# Add external libraries
+find_package(CPR REQUIRED)
+find_package(nlohmann_json REQUIRED)
+
+target_link_libraries(weather PRIVATE cpr::cpr nlohmann_json::nlohmann_json)

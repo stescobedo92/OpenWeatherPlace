@@ -1,25 +1,30 @@
 #include <iostream>
+#include "WeatherClient.h"
+#include "EnvLoader.h"
 
-// TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
-// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 int main() {
-    // TIP Press <shortcut actionId="RenameElement"/> when your caret is at the
-    // <b>lang</b> variable name to see how CLion can help you rename it.
-    auto lang = "C++";
-    std::cout << "Hello and welcome to " << lang << "!\n";
+    try {
+        EnvLoader env_loader(".env");
+        auto env_vars = env_loader.load();
+        std::string api_key = env_vars["API_KEY"];
 
-    for (int i = 1; i <= 5; i++) {
-        // TIP Press <shortcut actionId="Debug"/> to start debugging your code.
-        // We have set one <icon src="AllIcons.Debugger.Db_set_breakpoint"/>
-        // breakpoint for you, but you can always add more by pressing
-        // <shortcut actionId="ToggleLineBreakpoint"/>.
-        std::cout << "i = " << i << std::endl;
+        if (api_key.empty()) {
+            std::cerr << "API_KEY is not set in the .env file" << std::endl;
+            return 1;
+        }
+
+        std::string location;
+        std::cout << "Name of the city:";
+        std::getline(std::cin, location);
+
+        WeatherClient client(api_key);
+        std::string weather_info = client.getWeather(location);
+        std::cout << weather_info << std::endl;
+
+    } catch (const std::exception& e) {
+        std::cerr << e.what() << std::endl;
+        return 1;
     }
 
     return 0;
 }
-
-// TIP See CLion help at <a
-// href="https://www.jetbrains.com/help/clion/">jetbrains.com/help/clion/</a>.
-//  Also, you can try interactive lessons for CLion by selecting
-//  'Help | Learn IDE Features' from the main menu.
