@@ -7,20 +7,20 @@
 
 /**
  * @class WeatherClient
- * @brief Clase para obtener datos del clima usando la API de OpenWeatherMap.
+ * @brief Class to get weather data using the OpenWeatherMap API.
  */
 class WeatherClient {
 public:
     /**
      * @brief Constructor.
-     * @param api_key Clave de la API de OpenWeatherMap.
+     * @param api_key OpenWeatherMap API key.
      */
-    WeatherClient(const std::string& api_key);
+    explicit WeatherClient(const std::string& api_key);
 
     /**
-     * @brief Obtiene el clima para una ubicación dada.
-     * @param location Nombre de la ciudad.
-     * @return Información del clima como una cadena.
+    * @brief Gets the weather for a given location.
+    * @param location Name of the city.
+    * @return Weather information as a string.
      */
     std::string getWeather(const std::string& location);
 
@@ -28,9 +28,9 @@ private:
     std::string api_key_;
 
     /**
-     * @brief Codifica una cadena para que sea válida en una URL.
-     * @param value Cadena a codificar.
-     * @return Cadena codificada.
+    * @brief Encodes a string so that it is valid in a URL.
+    * @param value String to encode.
+    * @return Encoded string.
      */
     std::string url_encode(const std::string &value);
 };

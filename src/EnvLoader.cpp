@@ -10,7 +10,7 @@ std::unordered_map<std::string, std::string> EnvLoader::load() const {
     std::unordered_map<std::string, std::string> env_vars;
     std::ifstream file(file_path_);
     if (!file.is_open()) {
-        throw std::runtime_error("Error al abrir el archivo .env");
+        throw std::runtime_error("Error opening .env file");
     }
 
     std::string line;
