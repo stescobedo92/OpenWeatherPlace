@@ -14,7 +14,7 @@ int main() {
         }
 
         std::string location;
-        std::cout << "Name of the city:";
+        std::cout << "Name of the city: ";
         std::getline(std::cin, location);
 
         WeatherClient client(api_key);
